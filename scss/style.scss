@@ -43,3 +43,45 @@
 @import "bootstrap/scss/utilities/api";
 
 @import 'sprite';
+
+.btn, .navbar {
+  text-transform: uppercase;
+}
+
+#page-header {
+  background: linear-gradient(to top, rgba(#09052f, 0.85), rgba(#311d5e, 0.85)), url("../images/header-bg.jpg") 0 0 / cover no-repeat;
+  min-height: 670px;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px;
+}
+
+#header-text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  line-height: 1.71;
+  letter-spacing: 0.7px;
+
+  h1 {
+    margin-bottom: 20px;
+    letter-spacing: .32px;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 1px;
+      background: #00e0d0;
+      margin: 20px auto 0;
+    }
+  }
+
+  .btn {
+    margin-top: 50px;
+  }
+}

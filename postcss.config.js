@@ -1,5 +1,6 @@
 module.exports = {
   plugins: [
+    require('webp-in-css/plugin'),
     require('postcss-assets')({
       loadPaths: [__dirname + '/dist/css'],
       //cachebuster: true,
@@ -26,9 +27,6 @@ module.exports = {
     //require('webp-in-css/plugin')({ /* options */ }),
     require('postcss-preset-env')({
       autoprefixer: {grid: true, remove: false}
-    }),
-    require('@fullhuman/postcss-purgecss')({
-      content: ['./src/**/*.pug', './src/**/*.html']
     })
   ]
 };

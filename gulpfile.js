@@ -10,21 +10,29 @@ const gulpif = require('gulp-if');
 const pug = require('gulp-pug');
 const beautify = require('gulp-beautify');
 const babel = require('gulp-babel');
-const svgSprite = require('gulp-svg-sprite');
+// const svgSprite = require('gulp-svg-sprite');
 const terser = require('gulp-terser');
 const spritesmith = require('gulp.spritesmith');
 const gulpCleanCSS = require('gulp-clean-css');
 const cssnano = require('cssnano');
+const cache = require('gulp-cache');
+const imagemin = require('gulp-imagemin');
+const imageminJpegtran = require('imagemin-jpegtran');
+const imageminPngquant = require('imagemin-pngquant');
+const imageminZopfli = require('imagemin-zopfli');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const imageminGiflossy = require('imagemin-giflossy');
+const webp = require('gulp-webp');
 
 let dev = false;
 let bs = false;
 
 function clean() {
-  return del('dist/*');
+  return del(['dist/*']);
 }
 
 function css() {
-  return src('scss/index.scss')
+  return src('scss/style.scss')
     .pipe(gulpStylelint({
       fix: true,
       reporters: [
@@ -51,18 +59,23 @@ function css() {
       inline: false,
       format: 'beautify'
     }))
-    .pipe(gulpif(!dev, postcss([cssnano()])))
+    .pipe(gulpif(!dev, postcss([
+      cssnano(),
+      require('@fullhuman/postcss-purgecss')({
+        content: ['./src/**/*.pug', './src/**/*.html']
+      })]
+    )))
     .pipe(gulpif(dev, sourcemaps.write('.', {
       includeContent: false,
     })))
-    .pipe(dest('dist/'))
+    .pipe(dest('dist/css'))
     .pipe(gulpif(bs, browserSync.reload({stream: true})));
 }
 
 function dependencies(cb) {
   src([
     'node_modules/bootstrap/dist/js/bootstrap.min.js',
-    'node_modules/@popperjs/core/dist/umd/popper-lite.min.js',
+    'node_modules/@popperjs/core/dist/umd/popper-lite.min.js'
   ])
     .pipe(dest('dist/js'));
   src('src/favicons/*')
@@ -117,33 +130,108 @@ exports.sprite = function pngsprite(cb) {
 
 function sri() {
   return src('dist/**/*.html')
-  // do not modify contents of any referenced css- and js-files after this
-  // task...
+    // do not modify contents of any referenced css- and js-files after this
+    // task...
     .pipe(sriHash())
     // ... manipulating html files further, is perfectly fine
     .pipe(dest('dist/'));
 }
 
-exports.default = series(clean, parallel(dependencies, js, css), html, sri);
+function images(cb) {
+  src('img-src/*.gif')
+    .pipe(cache(imagemin([
+      imageminGiflossy({
+        optimizationLevel: 3,
+        optimize: 3,
+        lossy: 2
+      }),
+    ])))
+    .pipe(dest('dist/images'));
+
+  src('img-src/*.png')
+    .pipe(cache(imagemin([
+      imageminPngquant({
+        speed: 1,
+        quality: [0.95, 1]
+      }),
+      imageminZopfli({
+        more: true,
+        // iterations: 50 // very slow but more effective
+      }),
+    ], {
+      // verbose: true
+    })))
+    .pipe(dest('dist/images'))
+    .pipe(cache(webp({
+      lossless: true
+    })), {name: 'webp'})
+    .pipe(dest('dist/images'));
+
+  src('img-src/*.jpg')
+    .pipe(cache(imagemin([
+      imageminJpegtran({
+        progressive: true
+      }),
+      imageminMozjpeg({
+        quality: 80
+      }),
+      // imageminGuetzli({quality: 90}),
+    ])))
+    .pipe(dest('dist/images'));
+
+  src('img-src/*.jpg')
+    .pipe(cache(webp({
+      quality: 70 // Quality setting from 0 to 100
+    })), {name: 'webp'})
+    .pipe(dest('dist/images'));
+
+  src('img-src/images-quant/**/*.png')
+    .pipe(cache(imagemin([
+      imageminPngquant({quality: [0.65, .8]}),
+      imageminZopfli({
+        more: true,
+        iterations: 50 // very slow but more effective
+      }),
+    ])))
+    .pipe(dest('dist/images'));
+
+  src('img-src/*.svg')
+    .pipe(cache(imagemin([
+      imagemin.svgo({
+        removeTitle: true,
+        cleanupIDs: true
+      })
+    ])))
+    .pipe(dest('dist/images'));
+
+  cb();
+}
+
+exports.default = series(clean, parallel(dependencies, js, css, images), html, sri);
 exports.dev = function (cb) {
   dev = true;
-  series(clean, parallel(dependencies, js, css), html)();
+  series(clean, parallel(dependencies, js, css, images), html)();
   cb();
 };
 exports.browsersync = function () {
   dev = true;
   bs = true;
-  let gogogo = series(clean, parallel(dependencies, js, css), html, function (cb) {
-    watch('scss/style.scss', css);
+  let gogogo = series(clean, parallel(dependencies, js, css, images), html, function (cb) {
+    watch('scss/**/*.scss', css);
     watch('src/script.js', series(js, html));
     watch(['src/**/*.pug', 'src/**/*.html'], html);
 
     browserSync.init({
       server: {
         baseDir: "dist/"
-      }
+      },
+      open: false,
     });
     cb();
   });
   gogogo();
 };
+exports.clearcache = () => {
+  return cache.clearAll();
+}
+exports.images = series(images);
