@@ -1,0 +1,12 @@
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+/node_modules
+yarn.lock
+/cache/
+yarn-error.log
+pnpm-lock.yaml
+/dist/
