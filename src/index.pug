@@ -84,7 +84,29 @@ body
               h4 MADE WITH LOVE
               .description This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet Aenean.
 
+      #block-team.block.text-center
+        .container
+          hgroup
+            h2 MEET OUR AMAZING TEAM
+            h3.subtext Lorem ipsum dolor sit amet proin gravida nibh vel velit
+          -
+            var team = [
+              { name: 'SEMF UCUK', title: 'CEO & FOUNDER' },
+              { name: 'DIK ADALIN', title: 'ENGINEERING' },
+              { name: 'JENG KOL', title: 'DESIGNER' },
+              { name: 'PET ROMAK', title: 'MARKETING' },
+            ]
 
+          div.team-grid
+            each teammember in team
+              div.team-item(itemscope, itemtype="https://schema.org/Person")
+                div.photo(itemprop="image")
+                div.name-wrap
+                  div.name(itemprop="name")= teammember.name
+                  div.title(itemprop="jobTitle")= teammember.title
+
+          .team-footer Become part of our dream team, let’s join us !
+          .btn.btn-outline-primary WE ARE HIRING
 
   script(src="js/bootstrap.min.js")
   script(src="js/popper-lite.min.js")

@@ -220,6 +220,59 @@ hgroup {
 
   &:after {
     @extend %heading-line;
+
     background-color: #c6c4c9;
+  }
+}
+
+#block-team {
+  background: $block-gradient-overlay, url("../images/header-bg.jpg") 0 0 / cover no-repeat;
+  color: #fff;
+
+  h2 {
+    color: #fff;
+  }
+
+  hgroup {
+    .subtext {
+      color: #f9f9f9;
+    }
+
+    &:after {
+      background-color: #655c81;
+    }
+  }
+
+  .team-footer {
+    margin-top: 70px;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, max-content));
+  justify-content: space-evenly;
+  grid-gap: 20px;
+
+  .photo {
+    width: 220px;
+    height: 229px;
+    background-color: #fff;
+  }
+
+  .name-wrap {
+    padding: 1.5rem;
+    border: 1px solid rgba(#e1e1e1, .5);
+  }
+
+  .name {
+    font-weight: 900;
+    letter-spacing: .7px;
+  }
+
+  .title {
+    font-size: (13 / 16 * 1rem);
+    color: darken(#fff, 25%);
   }
 }

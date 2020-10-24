@@ -23,12 +23,13 @@ const imageminZopfli = require('imagemin-zopfli');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminGiflossy = require('imagemin-giflossy');
 const webp = require('gulp-webp');
+const log = require('fancy-log');
 
 let dev = false;
 let bs = false;
 
 function clean() {
-  return del(['dist/*']);
+  return del('dist/*');
 }
 
 function css() {
@@ -148,7 +149,8 @@ function images(cb) {
         lossy: 2
       }),
     ])))
-    .pipe(dest('dist/images'));
+    .pipe(dest('dist/images'))
+    .on('end', function(){ log('Gif done!'); });
 
   src('img-src/*.png')
     .pipe(cache(imagemin([
@@ -167,7 +169,8 @@ function images(cb) {
     .pipe(cache(webp({
       lossless: true
     })), {name: 'webp'})
-    .pipe(dest('dist/images'));
+    .pipe(dest('dist/images'))
+    .on('end', function(){ log('PNG done!'); });
 
   src('img-src/*.jpg')
     .pipe(cache(imagemin([
@@ -179,13 +182,15 @@ function images(cb) {
       }),
       // imageminGuetzli({quality: 90}),
     ])))
-    .pipe(dest('dist/images'));
+    .pipe(dest('dist/images'))
+    .on('end', function(){ log('JPG done!'); });
 
   src('img-src/*.jpg')
     .pipe(cache(webp({
       quality: 70 // Quality setting from 0 to 100
     })), {name: 'webp'})
-    .pipe(dest('dist/images'));
+    .pipe(dest('dist/images'))
+    .on('end', function(){ log('JPG to WebP done!'); });
 
   src('img-src/images-quant/**/*.png')
     .pipe(cache(imagemin([
@@ -195,7 +200,8 @@ function images(cb) {
         iterations: 50 // very slow but more effective
       }),
     ])))
-    .pipe(dest('dist/images'));
+    .pipe(dest('dist/images'))
+    .on('end', function(){ log('PNGquant done!'); });
 
   src('img-src/*.svg')
     .pipe(cache(imagemin([
@@ -204,7 +210,8 @@ function images(cb) {
         cleanupIDs: true
       })
     ])))
-    .pipe(dest('dist/images'));
+    .pipe(dest('dist/images'))
+    .on('end', function(){ log('SVG done!'); });
 
   cb();
 }
