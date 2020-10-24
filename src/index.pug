@@ -10,7 +10,7 @@ head
   link(href='/site.webmanifest' rel='manifest')
   link(color='#30235f' href='/safari-pinned-tab.svg' rel='mask-icon')
   meta(content='#2d89ef' name='msapplication-TileColor')
-  meta(content='#ffffff' name='theme-color')
+  meta(content='#fff' name='theme-color')
   link(href='css/style.css' rel='stylesheet')
 body
   #page-wrap
@@ -37,7 +37,7 @@ body
             a.btn.btn-outline-primary(href="#") Learn more
 
     #page-content
-      #block-story.block.container
+      section#block-story.block.container
         .row.align-items-center
           .col-lg-5.site-icon.text-center
             include /images/content-logo.svg
@@ -47,12 +47,12 @@ body
             p Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
             a.btn.btn-outline-primary(href="#") Learn more
 
-      #block-video.block
+      section#block-video.block
         .container
           button.btn-play.btn-transparent(title="Watch our story")
             span.icon-play
             span.description Watch our story
-      #block-expertise.block.text-center
+      section#block-expertise.block.text-center
         .container
           hgroup
             h2 Expertise
@@ -84,17 +84,17 @@ body
               h4 MADE WITH LOVE
               .description This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet Aenean.
 
-      #block-team.block.text-center
+      section#block-team.block.text-center
         .container
           hgroup
             h2 MEET OUR AMAZING TEAM
             h3.subtext Lorem ipsum dolor sit amet proin gravida nibh vel velit
           -
             var team = [
-              { name: 'SEMF UCUK', title: 'CEO & FOUNDER' },
-              { name: 'DIK ADALIN', title: 'ENGINEERING' },
-              { name: 'JENG KOL', title: 'DESIGNER' },
-              { name: 'PET ROMAK', title: 'MARKETING' },
+              {name: 'SEMF UCUK', title: 'CEO & FOUNDER'},
+              {name: 'DIK ADALIN', title: 'ENGINEERING'},
+              {name: 'JENG KOL', title: 'DESIGNER'},
+              {name: 'PET ROMAK', title: 'MARKETING'},
             ]
 
           div.team-grid
@@ -102,11 +102,43 @@ body
               div.team-item(itemscope, itemtype="https://schema.org/Person")
                 div.photo(itemprop="image")
                 div.name-wrap
-                  div.name(itemprop="name")= teammember.name
-                  div.title(itemprop="jobTitle")= teammember.title
+                  div.person-name(itemprop="name")= teammember.name
+                  div.person-title(itemprop="jobTitle")= teammember.title
 
           .team-footer Become part of our dream team, let’s join us !
           .btn.btn-outline-primary WE ARE HIRING
+
+      section#block-works.block
+        header.header-with-link.container
+          .row.align-items-center
+            h2.col Our works
+            div.col-md-auto
+              a(href="#") See All Project in dribbble <span class="icon icon-arrow-right"></span>
+
+        .works-grid
+          - for (var x = 0; x < 12; x++)
+            .works-grid-item
+
+        .text-center
+          button.btn.btn-outline-primary(href="#") Load more
+
+      // Тут явно подразумевалась динамика, но в ТЗ нет, так что статика
+      section#block-team2.block.text-center
+        .container
+          h2 “
+          .block-content.row.justify-content-md-center
+            .text.col.col-lg-10 This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit.
+            .team2
+              .person-name JANE GALADRIEL
+              .person-title CEO TENGKUREP
+              .team2__people
+                img(src="images/staff-1.png", alt="staff 1")
+                img(src="images/staff-2.png", alt="staff 1")
+                img(src="images/staff-jane.png", alt="JANE GALADRIEL, CEO TENGKUREP")
+                img(src="images/staff-4.png", alt="staff 1")
+                img(src="images/staff-5.png", alt="staff 1")
+
+
 
   script(src="js/bootstrap.min.js")
   script(src="js/popper-lite.min.js")

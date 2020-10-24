@@ -265,14 +265,98 @@ hgroup {
     padding: 1.5rem;
     border: 1px solid rgba(#e1e1e1, .5);
   }
+}
 
-  .name {
-    font-weight: 900;
-    letter-spacing: .7px;
+.person-name {
+  font-weight: 900;
+  letter-spacing: .7px;
+}
+
+.person-title {
+  font-size: (13 / 16 * 1rem);
+  color: darken(#fff, 25%);
+}
+
+.header-with-link {
+  margin-bottom: 70px;
+
+  h2 {
+    margin-bottom: 0;
   }
 
-  .title {
-    font-size: (13 / 16 * 1rem);
-    color: darken(#fff, 25%);
+  a {
+    color: $body-color;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      color: $headings-color;
+    }
+  }
+}
+
+.icon-arrow-right {
+  @include sprite($arrow-right);
+  display: inline-block;
+  vertical-align: -5%;
+  margin-left: .3rem;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin-bottom: 70px;
+
+  &-item {
+    height: 200px;
+
+    &:nth-child(4n-3) {
+      background-color: #b6b6b6;
+    }
+
+    &:nth-child(4n-2) {
+      background-color: #acacac;
+    }
+
+    &:nth-child(4n-1) {
+      background-color: #a1a1a1;
+    }
+
+    &:nth-child(4n) {
+      background-color: #8a8a8a;
+    }
+  }
+}
+
+#block-team2 {
+  background: $block-gradient-overlay, url("../images/team2-bg.jpg") 0 0 / cover no-repeat;
+  color: #fff;
+
+  h2 {
+    color: #fff;
+    font-size: (100 / 16 * 1rem);
+    font-weight: normal;
+    letter-spacing: 3px;
+    display: block;
+    line-height: .5;
+  }
+
+  .text {
+    font-family: $headings-font-family;
+    letter-spacing: 0.4px;
+    font-weight: normal;
+    font-size: 1rem;
+  }
+
+  .team2 {
+    margin-top: 2.5rem;
+
+    &__people {
+      margin-top: 2.5rem;
+
+      img {
+        padding-left: 7px;
+        padding-right: 7px;
+      }
+    }
   }
 }
