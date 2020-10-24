@@ -97,7 +97,7 @@ function js() {
 
 function html() {
   return src('src/**/*.pug')
-    .pipe(pug({}))
+    .pipe(pug({basedir: __dirname + '/dist'}))
     .pipe(gulpif(dev, beautify.html({indent_size: 2})))
     .pipe(dest('dist'))
     .on("end", gulpif(bs, browserSync.reload, function () {
@@ -121,7 +121,9 @@ function html() {
 exports.sprite = function pngsprite(cb) {
   const spriteData = src('img-src/pngsprite/*.png').pipe(spritesmith({
     imgName: 'sprite.png',
-    cssName: 'sprite.scss'
+    cssName: 'sprite.scss',
+    padding: 2,
+    imgPath: '../images/sprite.png'
   }));
   spriteData.img.pipe(dest('img-src'));
   spriteData.css.pipe(dest('scss'));

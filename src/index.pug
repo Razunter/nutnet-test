@@ -37,9 +37,53 @@ body
             a.btn.btn-outline-primary(href="#") Learn more
 
     #page-content
-      .block.container
-        .row
-          .col-lg-5
+      #block-story.block.container
+        .row.align-items-center
+          .col-lg-5.site-icon.text-center
+            include /images/content-logo.svg
+          .col-lg-7
+            h2 Our Story
+            p This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus
+            p Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            a.btn.btn-outline-primary(href="#") Learn more
+
+      #block-video.block
+        .container
+          button.btn-play.btn-transparent(title="Watch our story")
+            span.icon-play
+            span.description Watch our story
+      #block-expertise.block.text-center
+        .container
+          hgroup
+            h2 Expertise
+            h3.subtext Lorem ipsum dolor sit amet proin gravida nibh vel velit
+
+          .expertise-grid
+            .expertise-item
+              .icon.icon-expert-webdesign
+              h4 WEB DESIGN & DEVELOPMENT
+              .description This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet Aenean.
+            .expertise-item
+              .icon.icon-expert-branding
+              h4 BRANDING IDENTITY
+              .description This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet Aenean.
+            .expertise-item
+              .icon.icon-expert-mobile
+              h4 MOBILE APP
+              .description This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet Aenean.
+            .expertise-item
+              .icon.icon-expert-search
+              h4 SEARCH ENGINE OPTIMIZATION
+              .description This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet Aenean.
+            .expertise-item
+              .icon.icon-expert-gamedev
+              h4 GAME DEVELOPMENT
+              .description This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet Aenean.
+            .expertise-item
+              .icon.icon-expert-love
+              h4 MADE WITH LOVE
+              .description This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet Aenean.
+
 
 
   script(src="js/bootstrap.min.js")

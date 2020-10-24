@@ -44,14 +44,41 @@
 
 @import 'sprite';
 
+$block-gradient-overlay: linear-gradient(to top, rgba(#09052f, 0.85), rgba(#311d5e, 0.85));
+
+%heading-line {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: #00e0d0;
+  margin: 20px auto 0;
+}
+
 .btn, .navbar {
   text-transform: uppercase;
 }
 
+h1 {
+  font-weight: 900;
+}
+
+h2 {
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-family: $font-family-sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+}
+
 #page-header {
-  background: linear-gradient(to top, rgba(#09052f, 0.85), rgba(#311d5e, 0.85)), url("../images/header-bg.jpg") 0 0 / cover no-repeat;
+  background: $block-gradient-overlay, url("../images/header-bg.jpg") 0 0 / cover no-repeat;
   min-height: 670px;
-  color: #FFFFFF;
+  color: #fff;
   display: flex;
   flex-direction: column;
   padding-bottom: 70px;
@@ -63,25 +90,136 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-
   line-height: 1.71;
   letter-spacing: 0.7px;
 
   h1 {
+    color: #fff;
     margin-bottom: 20px;
     letter-spacing: .32px;
 
     &:after {
-      content: '';
-      display: block;
-      width: 50px;
-      height: 1px;
-      background: #00e0d0;
-      margin: 20px auto 0;
+      @extend %heading-line;
     }
   }
 
   .btn {
     margin-top: 50px;
+  }
+}
+
+.site-icon svg {
+  width: 235px;
+  height: 229px;
+}
+
+.block {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+#block-story h2 {
+  margin-bottom: 1.1rem;
+}
+
+#block-video {
+  background: $block-gradient-overlay, url("../images/player-bg.jpg") 0 0 / cover no-repeat;
+
+  .container {
+    display: flex;
+    min-height: 550px - 140px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.btn-play {
+  text-align: center;
+  height: 100px;
+  overflow: visible;
+
+  @include transition($transition-fade);
+
+  &:hover,
+  &:focus {
+    opacity: 0.75;
+  }
+
+  .icon-play {
+    @include sprite($play-icon);
+    display: block;
+    margin: 0 auto 2rem auto;
+  }
+
+  .description {
+    color: #fff;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+}
+
+.btn-transparent {
+  background: transparent;
+  border: 0 none;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, max-content));
+  grid-gap: 1px;
+  // С одной стороны, "хак", с другой стороны, работает с любым количеством и расположением айтемов
+  background: #ebebeb;
+
+  .icon {
+    margin: 0 auto 1.75rem;
+    height: 50px;
+  }
+
+  .expertise-item {
+    background: #fff;
+    padding: 2rem;
+
+    h4 {
+      margin-bottom: 1.75rem;
+    }
+  }
+}
+
+.icon-expert-webdesign {
+  @include sprite($expert-webdesign);
+}
+
+.icon-expert-branding {
+  @include sprite($expert-branding);
+}
+
+.icon-expert-mobile {
+  @include sprite($expert-mobile);
+}
+
+.icon-expert-search {
+  @include sprite($expert-search);
+}
+
+.icon-expert-gamedev {
+  @include sprite($expert-gamedev);
+}
+
+.icon-expert-love {
+  @include sprite($expert-love);
+}
+
+hgroup {
+  margin-bottom: 3rem;
+
+  .subtext {
+    letter-spacing: 1.05px;
+    color: lighten($headings-color, 25%);
+  }
+
+  &:after {
+    @extend %heading-line;
+    background-color: #c6c4c9;
   }
 }
