@@ -12,6 +12,7 @@ head
   meta(content='#2d89ef' name='msapplication-TileColor')
   meta(content='#fff' name='theme-color')
   link(href='css/style.css' rel='stylesheet')
+  link(href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Roboto:ital,wght@0,300;0,400;0,900;1,400&display=swap", rel="stylesheet")
 body
   #page-wrap
     header#page-header
@@ -49,7 +50,7 @@ body
 
       section#block-video.block
         .container
-          button.btn-play.btn-transparent(title="Watch our story")
+          button.btn-play.btn-transparent(title="Watch our story", data-toggle="modal", data-target="#videomodal")
             span.icon-play
             span.description Watch our story
       section#block-expertise.block.text-center
@@ -132,11 +133,11 @@ body
               .person-name JANE GALADRIEL
               .person-title CEO TENGKUREP
               .team2__people
-                img(src="images/staff-1.png", alt="staff 1")
-                img(src="images/staff-2.png", alt="staff 2")
-                img(src="images/staff-jane.png", alt="JANE GALADRIEL, CEO TENGKUREP")
-                img(src="images/staff-4.png", alt="staff 4")
-                img(src="images/staff-5.png", alt="staff 5")
+                img(src="images/staff-1.png", alt="staff 1", tabindex="0", data-staff="1")
+                img(src="images/staff-2.png", alt="staff 2", tabindex="0", data-staff="2")
+                img(src="images/staff-jane.png", alt="JANE GALADRIEL, CEO TENGKUREP", tabindex="0", data-staff="3")
+                img(src="images/staff-4.png", alt="staff 4", tabindex="0", data-staff="4")
+                img(src="images/staff-5.png", alt="staff 5", tabindex="0", data-staff="5")
 
       section#block-form.block.container
         h2.text-center.mb-4 GIVE US A GOOD NEWS
@@ -199,9 +200,16 @@ body
           .col-auto
             .copyright Copyright © 2015 - Tajem Creative
 
+  #videomodal.modal.fade(tabindex="-1")
+    .modal-dialog.modal-dialog-centered
+      .modal-content
+        .modal-header
+          button(type="button", class="btn-close", data-dismiss="modal", aria-label="Close")
+        .modal-body.text-center
+          iframe(width="560" height="315" src="https://www.youtube.com/embed/KvUgaHTNit4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
 
-  script(src="js/bootstrap.min.js")
-  script(src="js/popper-lite.min.js")
+  script(src="js/bootstrap.bundle.min.js")
   script
     include ../node_modules/webp-in-css/polyfill.js
-  link(href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Roboto:ital,wght@0,300;0,400;0,900;1,400&display=swap", rel="stylesheet")
+  script
+    include script.js

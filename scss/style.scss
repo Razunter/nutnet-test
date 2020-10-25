@@ -360,6 +360,11 @@ hgroup {
       img {
         padding-left: 7px;
         padding-right: 7px;
+
+        &:hover, &:focus {
+          cursor: pointer;
+          opacity: .75;
+        }
       }
     }
   }
@@ -479,5 +484,19 @@ hgroup {
     + a {
       margin-left: .5rem;
     }
+  }
+}
+
+#videomodal {
+  .modal-dialog {
+    max-width: 580px;
+  }
+
+  .modal-body {
+    padding: 10px;
+  }
+
+  iframe {
+    max-width: 100%;
   }
 }

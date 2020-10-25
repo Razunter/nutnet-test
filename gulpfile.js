@@ -75,8 +75,7 @@ function css() {
 
 function dependencies(cb) {
   src([
-    'node_modules/bootstrap/dist/js/bootstrap.min.js',
-    'node_modules/@popperjs/core/dist/umd/popper-lite.min.js'
+    'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
   ])
     .pipe(dest('dist/js'));
   src('src/favicons/*')
@@ -90,7 +89,7 @@ function js() {
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(terser())
+    .pipe(gulpif(!dev, terser()))
     .pipe(gulpif(dev, sourcemaps.write('.')))
     .pipe(dest('dist/js'))
   // .on("end", gulpif(bs, browserSync.reload));
