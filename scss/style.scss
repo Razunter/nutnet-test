@@ -256,7 +256,7 @@ hgroup {
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, max-content));
-  justify-content: space-evenly;
+  justify-content: center;
   grid-gap: 20px;
 
   .photo {
@@ -307,8 +307,12 @@ hgroup {
 
 .works-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   margin-bottom: 70px;
+
+  @include media-breakpoint-up('lg') {
+    grid-template-columns: repeat(6, 1fr);
+  }
 
   &-item {
     height: 200px;
@@ -374,10 +378,25 @@ hgroup {
   background: $block-gradient-overlay, url("../images/footer-bg.jpg") 0 0 / cover no-repeat;
   color: #fff;
 
-  .h4 {
-    color: #fff;
-    font-size: (15 / 16 * 1rem);
-    letter-spacing: 0.75px;
+  .logo {
+    margin-bottom: 1.5rem;
+  }
+
+  .header-wrap {
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    @include media-breakpoint-up('lg') {
+      margin-bottom: 1.5rem;
+    }
+
+    .h4 {
+      color: #fff;
+      font-size: (15 / 16 * 1rem);
+      letter-spacing: 0.75px;
+      margin-bottom: 0;
+    }
   }
 
   .text-marked {

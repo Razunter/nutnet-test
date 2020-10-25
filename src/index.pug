@@ -40,7 +40,7 @@ body
     #page-content
       section#block-story.block.container
         .row.align-items-center
-          .col-lg-5.site-icon.text-center
+          .col-lg-5.site-icon.text-center.mb-5.mb-lg-0
             include /images/content-logo.svg
           .col-lg-7
             h2 Our Story
@@ -157,22 +157,20 @@ body
 
     footer#page-footer.block
       .container
-        .row.mb-3
-          .col-lg-4
+        .row
+          .col-lg-4.mb-3.mb-lg-0
             .logo
               img(src='/images/logo.png' alt='tajam' width='128' height='50')
-          .col-lg-4
-            .h4 OUR STUDIO
-          .col-lg-4
-            .h4 STAY IN TOUCH
-        .row
-          .col-lg-4
             .text lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh elit. Duis sed odio sit amet auctror a ornare odio non mauris vitae erat in elit
-          .col-lg-4
+          .col-lg-4.mb-3.mb-lg-0
+            .header-wrap
+              .h4 OUR STUDIO
             // без schema и ссылки
             p.text-marked.icon-map Ruko cucruk, Jl. Radio luar dalem jos No.12 - 13, Kalideres - Jakarta Barat 11480 - Indonesia
             p.text-marked.icon-phone (+62) 21-2224 3333
           .col-lg-4
+            .header-wrap
+              .h4 STAY IN TOUCH
             form.form-subscribe.row.gx-2
               .col
                 input(type="email", placeholder="Subscribe our newsletter", title="Subscribe our newsletter").form-control
