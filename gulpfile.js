@@ -61,10 +61,12 @@ function css() {
       format: 'beautify'
     }))
     .pipe(gulpif(!dev, postcss([
-      cssnano(),
-      require('@fullhuman/postcss-purgecss')({
-        content: ['./src/**/*.pug', './src/**/*.html']
-      })]
+        cssnano()
+
+        // require('@fullhuman/postcss-purgecss')({
+        //   content: ['./src/**/*.pug', './src/**/*.html'],
+        // })
+      ]
     )))
     .pipe(gulpif(dev, sourcemaps.write('.', {
       includeContent: false,
@@ -149,7 +151,9 @@ function images(cb) {
       }),
     ])))
     .pipe(dest('dist/images'))
-    .on('end', function(){ log('Gif done!'); });
+    .on('end', function () {
+      log('Gif done!');
+    });
 
   src('img-src/*.png')
     .pipe(cache(imagemin([
@@ -169,7 +173,9 @@ function images(cb) {
       lossless: true
     })), {name: 'webp'})
     .pipe(dest('dist/images'))
-    .on('end', function(){ log('PNG done!'); });
+    .on('end', function () {
+      log('PNG done!');
+    });
 
   src('img-src/*.jpg')
     .pipe(cache(imagemin([
@@ -182,14 +188,18 @@ function images(cb) {
       // imageminGuetzli({quality: 90}),
     ])))
     .pipe(dest('dist/images'))
-    .on('end', function(){ log('JPG done!'); });
+    .on('end', function () {
+      log('JPG done!');
+    });
 
   src('img-src/*.jpg')
     .pipe(cache(webp({
       quality: 70 // Quality setting from 0 to 100
     })), {name: 'webp'})
     .pipe(dest('dist/images'))
-    .on('end', function(){ log('JPG to WebP done!'); });
+    .on('end', function () {
+      log('JPG to WebP done!');
+    });
 
   src('img-src/images-quant/**/*.png')
     .pipe(cache(imagemin([
@@ -200,7 +210,9 @@ function images(cb) {
       }),
     ])))
     .pipe(dest('dist/images'))
-    .on('end', function(){ log('PNGquant done!'); });
+    .on('end', function () {
+      log('PNGquant done!');
+    });
 
   src('img-src/*.svg')
     .pipe(cache(imagemin([
@@ -210,7 +222,9 @@ function images(cb) {
       })
     ])))
     .pipe(dest('dist/images'))
-    .on('end', function(){ log('SVG done!'); });
+    .on('end', function () {
+      log('SVG done!');
+    });
 
   return cb();
 }

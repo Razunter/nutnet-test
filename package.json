@@ -20,7 +20,6 @@
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-async-to-generator": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
-    "@fullhuman/postcss-purgecss": "^3.0.0",
     "autoprefixer": "^10.0.1",
     "browser-sync": "^2.26.13",
     "cssnano": "^4.1.10",
