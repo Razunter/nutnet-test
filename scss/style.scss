@@ -75,6 +75,10 @@ h4 {
   letter-spacing: .7px;
 }
 
+p:last-child {
+  margin-bottom: 0;
+}
+
 #page-header {
   background: $block-gradient-overlay, url("../images/header-bg.jpg") 0 0 / cover no-repeat;
   min-height: 670px;
@@ -357,6 +361,123 @@ hgroup {
         padding-left: 7px;
         padding-right: 7px;
       }
+    }
+  }
+}
+
+#page-footer {
+  background: $block-gradient-overlay, url("../images/footer-bg.jpg") 0 0 / cover no-repeat;
+  color: #fff;
+
+  .h4 {
+    color: #fff;
+    font-size: (15 / 16 * 1rem);
+    letter-spacing: 0.75px;
+  }
+
+  .text-marked {
+    padding-left: 30px;
+    position: relative;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    &.icon-map:before {
+      @include sprite($icon-map);
+    }
+
+    &.icon-phone:before {
+      @include sprite($icon-phone);
+    }
+  }
+
+  .form-subscribe {
+    input {
+      background: transparent;
+      border-color: #9f98b1;
+      color: #fff;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .btn {
+      background: rgba(#fff, .5);
+      border-color: rgba(#fff, .5);
+      min-height: $input-height;
+      font-size: $font-size-base;
+      width: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover, &:focus {
+        background: rgba(#fff, .75);
+      }
+
+      .icon-send {
+        display: inline-block;
+        @include sprite($btn-send);
+      }
+    }
+  }
+
+  .row-last {
+    margin-top: 70px;
+
+    .navbar {
+      padding: 0;
+    }
+
+    .nav-item:first-child a {
+      padding-left: 0;
+    }
+  }
+
+  .copyright {
+    font-weight: normal;
+  }
+}
+
+.icon-facebook {
+  @include sprite($soc-facebook);
+}
+
+.icon-dribble {
+  @include sprite($soc-dribbble);
+}
+
+.icon-twitter {
+  @include sprite($soc-twitter);
+}
+
+.icon-instagram {
+  @include sprite($soc-instagram);
+}
+
+.icon-googleplus {
+  @include sprite($soc-gplus);
+}
+
+.icon-youtube {
+  @include sprite($soc-youtube);
+}
+
+.social {
+  a {
+    display: inline-block;
+    margin-top: 1.5rem;
+
+    &:hover, &:focus {
+      opacity: .75;
+    }
+
+    + a {
+      margin-left: .5rem;
     }
   }
 }

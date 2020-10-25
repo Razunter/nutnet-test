@@ -42,3 +42,10 @@ $nav-link-font-size: (13/16 * 1rem);
 $navbar-nav-link-padding-x: (22 / 16 / 2 * 1rem);
 $navbar-padding-y: 15px;
 $border-radius: 2px;
+
+$input-font-size: $font-size-base;
+$input-padding-x: 1.5rem;
+$input-padding-y: .7rem;
+$input-border-radius: 0;
+
+$input-placeholder-color: lighten($body-color, 20%);

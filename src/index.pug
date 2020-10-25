@@ -14,7 +14,7 @@ head
   link(href='css/style.css' rel='stylesheet')
 body
   #page-wrap
-    #page-header
+    header#page-header
       .container.navbar-wrap
         nav.navbar.navbar-expand-lg.navbar-dark
           .container-fluid
@@ -120,7 +120,7 @@ body
             .works-grid-item
 
         .text-center
-          button.btn.btn-outline-primary(href="#") Load more
+          button.btn.btn-outline-primary.px-4(href="#") Load more
 
       // Тут явно подразумевалась динамика, но в ТЗ нет, так что статика
       section#block-team2.block.text-center
@@ -133,11 +133,71 @@ body
               .person-title CEO TENGKUREP
               .team2__people
                 img(src="images/staff-1.png", alt="staff 1")
-                img(src="images/staff-2.png", alt="staff 1")
+                img(src="images/staff-2.png", alt="staff 2")
                 img(src="images/staff-jane.png", alt="JANE GALADRIEL, CEO TENGKUREP")
-                img(src="images/staff-4.png", alt="staff 1")
-                img(src="images/staff-5.png", alt="staff 1")
+                img(src="images/staff-4.png", alt="staff 4")
+                img(src="images/staff-5.png", alt="staff 5")
 
+      section#block-form.block.container
+        h2.text-center.mb-4 GIVE US A GOOD NEWS
+        .row.justify-content-md-center
+          form.col-lg-6
+            .mb-4
+              input.form-control(type="text", placeholder="Name", title="Name")
+            .mb-4
+              input.form-control(type="email", placeholder="Email", title="Email")
+            .mb-4
+              input.form-control(type="text", placeholder="Subject", title="Subject")
+            .mb-4
+              // всё как на дизайне, ага
+              textarea.form-control(placeholder="Your Massage", title="Your Massage", rows="6")
+            .text-center
+              button.btn.btn-outline-primary.px-4(type="submit") Submit
+
+    footer#page-footer.block
+      .container
+        .row.mb-3
+          .col-lg-4
+            .logo
+              img(src='/images/logo.png' alt='tajam' width='128' height='50')
+          .col-lg-4
+            .h4 OUR STUDIO
+          .col-lg-4
+            .h4 STAY IN TOUCH
+        .row
+          .col-lg-4
+            .text lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh elit. Duis sed odio sit amet auctror a ornare odio non mauris vitae erat in elit
+          .col-lg-4
+            // без schema и ссылки
+            p.text-marked.icon-map Ruko cucruk, Jl. Radio luar dalem jos No.12 - 13, Kalideres - Jakarta Barat 11480 - Indonesia
+            p.text-marked.icon-phone (+62) 21-2224 3333
+          .col-lg-4
+            form.form-subscribe.row.gx-2
+              .col
+                input(type="email", placeholder="Subscribe our newsletter", title="Subscribe our newsletter").form-control
+              .col-auto
+                button(type="submit", title="Subscribe").btn
+                  span.icon-send
+
+            .social
+              a.icon.icon-facebook(href="#", title="Facebook", target="_blank", rel="noopener")
+              a.icon.icon-twitter(href="#", title="Twitter", target="_blank", rel="noopener")
+              a.icon.icon-dribble(href="#", title="Dribble", target="_blank", rel="noopener")
+              a.icon.icon-instagram(href="#", title="Instagram", target="_blank", rel="noopener")
+              a.icon.icon-googleplus(href="#", title="Google+ (RIP)", target="_blank", rel="noopener")
+              a.icon.icon-youtube(href="#", title="YouTube", target="_blank", rel="noopener")
+        .row.row-last.align-items-center
+          .col
+            .navbar.navbar-dark.navbar-expand
+                ul.navbar-nav
+                  li.nav-item
+                    a.nav-link(href='#') Help
+                  li.nav-item
+                    a.nav-link(href='#') TERMS & CONDITION
+                  li.nav-item
+                    a.nav-link(href='#') Privacy
+          .col-auto
+            .copyright Copyright © 2015 - Tajem Creative
 
 
   script(src="js/bootstrap.min.js")

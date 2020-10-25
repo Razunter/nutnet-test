@@ -81,7 +81,7 @@ function dependencies(cb) {
     .pipe(dest('dist/js'));
   src('src/favicons/*')
     .pipe(dest('dist'));
-  cb();
+  return cb();
 }
 
 function js() {
@@ -122,7 +122,7 @@ function html() {
 exports.sprite = function pngsprite(cb) {
   const spriteData = src('img-src/pngsprite/*.png').pipe(spritesmith({
     imgName: 'sprite.png',
-    cssName: 'sprite.scss',
+    cssName: 'sprite.css',
     padding: 2,
     imgPath: '../images/sprite.png'
   }));
@@ -213,14 +213,14 @@ function images(cb) {
     .pipe(dest('dist/images'))
     .on('end', function(){ log('SVG done!'); });
 
-  cb();
+  return cb();
 }
 
 exports.default = series(clean, parallel(dependencies, js, css, images), html, sri);
 exports.dev = function (cb) {
   dev = true;
   series(clean, parallel(dependencies, js, css, images), html)();
-  cb();
+  return cb();
 };
 exports.browsersync = function () {
   dev = true;
@@ -236,7 +236,7 @@ exports.browsersync = function () {
       },
       open: false,
     });
-    cb();
+    return cb();
   });
   gogogo();
 };
